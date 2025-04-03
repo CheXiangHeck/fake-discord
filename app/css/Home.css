@@ -1,0 +1,15 @@
+.Polygon {
+    clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%);
+}
+
+.BackgroundImage {
+    background-image: url(./Image/BackgroundImage.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.BorderImage {
+    border-image: 1 round url(./Image/Borderimage.png);
+    -webkit-border-image: 20 url(./Image/Borderimage.png);
+}
