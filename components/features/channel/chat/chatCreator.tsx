@@ -1,23 +1,40 @@
-export class chatCreator {
+import { UserInfoCreator } from "./UserInfoCreator";
 
-    public createUserInfoBox(userImage: string, username: string, date: string, time: string) {
-        const UserInfoBox = document.createElement("div");
+export class ChatCreator {
+    public userInfoClass: UserInfoCreator;
 
-        UserInfoBox.classList.add("infoBox");
-
+    constructor() {
+        this.userInfoClass = new UserInfoCreator();
     }
 
-    public createUserInfo() {
-        
+    public createChat(userImage: string, username: string, date: string, time: string, randomId: number) {
+        const chat = document.createElement("div");
+
+        const userInfoBox = this.userInfoClass.createUserInfoBox(userImage, username, date, time, randomId);
+
+        chat.appendChild(userInfoBox);
+
+        return chat;
     }
 
-    public createImage(userImage:string, username: string): HTMLImageElement {
-        const Image = document.createElement("img");
+    public insertText(text: string, id: string) {
+        const element = document.getElementById(id);
 
-        Image.src = userImage;
-        Image.classList.add("avatar");
-        Image.alt = username;
+        if (!element) {
+            return "Element not found";
+        }
 
-        return Image;
+        const chatContent = document.createElement("p");
+        chatContent.textContent = text;
+
+        element?.appendChild(chatContent);
+    }
+
+    public insertBlob(blob: string, id: string) {
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return "Element not found";
+        }
     }
 }

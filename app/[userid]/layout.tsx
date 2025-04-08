@@ -1,8 +1,8 @@
 import { ChannelButton } from "@/components/custom/channelButton";
-import { Frame } from "@/components/features/channel/channelFrame";
+import { LoadingPage } from "@/components/features/loadingPage/LoadingPage";
 import { UserInfoBox } from "@/components/features/userBox/userInfoBox";
 
-export default function Page() {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-slate-900 h-full">
       <nav className="flex justify-between p-2">
@@ -23,10 +23,11 @@ export default function Page() {
       </nav>
       <div className="flex h-full">
         <div className="p-3 h-full">
-            <ChannelButton channelName="Inbox" image="/inbox.png" />
+          <ChannelButton channelName="Inbox" image="/inbox.png" />
         </div>
-        <Frame />
+        {children}
         <UserInfoBox />
+        <LoadingPage />
       </div>
     </div>
   );

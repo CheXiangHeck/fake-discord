@@ -1,6 +1,6 @@
 .frameDesign {
     transition: all 1s;
-    padding: 1px 5px;
+    padding: 5px 20px;
     width: 100%;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .avatar {
-    width: 24px;
-    height: 24px;
+    width: 48px;
+    height: 48px;
     border-radius: 100%;
 }

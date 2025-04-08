@@ -1,33 +1,33 @@
 export interface ChannelButtonProps {
-    image: string;
-    channelName: string;
+  image: string;
+  channelName: string;
 }
 
 export interface FrameChannelButtonProps {
-    channelImage?: string,
-    channelName: string,
+  channelImage?: string;
+  channelName: string;
 }
 
 export interface ChannelBoxProps {
-    channelName: string,
-    channels: Array<FrameChannelButtonProps>
+  channelName: string;
+  channels: Array<FrameChannelButtonProps>;
 }
 
 export interface TargetElementsProps {
-    type: ElementType,
-    content: ElementContent,
+  type: ElementType;
+  content: ChatElementContent;
 }
 
-export interface ElementContent {
-    text: string,
-    username: string,
-    time: string,
-    date: string,
-    userImage: string,
-    tags?: Array<string>
+export interface ChatElementContent {
+  text: string;
+  username: string;
+  time: string;
+  date: string;
+  userImage: string;
+  tags?: Array<string>;
 }
 
 export enum ElementType {
-    Chat = "chat",
-    Post = "post"
+  Chat = "chat",
+  Post = "post",
 }

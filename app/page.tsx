@@ -1,8 +1,26 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import "./css/Home.css";
-import { SignedOut, SignInButton, SignOutButton } from "@clerk/nextjs";
+import { SignedOut, SignInButton, SignUpButton, useAuth } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const { isLoaded, isSignedIn, userId, sessionId } = useAuth();
+  const router = useRouter();
+
+  const afterSignIn = async () => {
+    if (isLoaded) {
+      if (isSignedIn) {
+        router.push(`/@me/channel/welcome`);
+      }
+    }
+  }
+
+  useEffect(() => {
+    afterSignIn();
+  }, [isLoaded, isSignedIn, userId, router, sessionId]);
+
   return (
     <div className="h-screen flex flex-row BackgroundImage BorderImage">
       <div className="w-full flex relative justify-center items-center backdrop-blur-md">
@@ -14,9 +32,9 @@ export default function Home() {
               <SignInButton>
                 <Button>Sign In</Button>
               </SignInButton>
-              <SignOutButton>
-                <Button>Sign Out</Button>
-              </SignOutButton>
+              <SignUpButton>
+                <Button>Sign Up</Button>
+              </SignUpButton>
             </SignedOut>
           </div>
         </div>
