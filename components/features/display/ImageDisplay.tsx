@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 
 interface ImageDisplayProps {
   file: File;
+  className: string;
 }
 
-export const ImageDisplay = ({ file }: ImageDisplayProps) => {
+export const ImageDisplay = ({ file, className }: ImageDisplayProps) => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const ImageDisplay = ({ file }: ImageDisplayProps) => {
   if (!previewUrl) return null;
 
   return (
-    <div className="w-20 h-20 flex flex-col justify-center items-center rounded-xl bg-slate-900">
+    <div className={`${className} w-20 h-20 flex flex-col justify-center items-center rounded-xl bg-slate-900`}>
       <Image src={previewUrl} alt={file.name} width={40} height={40} />
       <p className="w-full p-2 text-center truncate">{file.name}</p>
     </div>

@@ -14,16 +14,24 @@ const testingdata: ChatElementContent = {
     tags: ["web security", "recommendation", "reading"]
 };
 
-export const ChannelChat = () => {
+interface ChannelChatProps {
+  channelName?: string,
+  className?: string,
+}
+
+export const ChannelChat = ({channelName, className}: ChannelChatProps) => {
   const insertChat = () => {
     const chat = document.getElementById("Chat");
 
     if (!chat) {
-      console.log("Chat element not found.");
-      return;
+      return "Chat element not found.";
     }
 
     const chatCreator = new chatFactory(chat);
+
+    if (!chatCreator) {
+      return "Instance not created."
+    }
 
     chatCreator.createChat(testingdata);
   };
@@ -34,10 +42,10 @@ export const ChannelChat = () => {
 
   return (
     <div className="h-full w-full bg-gray-800">
-      <p className="p-3 border-b-2 border-gray-700">Welcome</p>
+      <p className="p-3 border-b-2 border-gray-700">{channelName}</p>
       <div className="flex h-full w-full">
         <div
-          className="w-3/4 h-full border-r-2 border-r-gray-700 overflow-y-scroll scroll-hidden relative"
+          className={`${className} w-3/4 h-full border-r-2 border-r-gray-700 overflow-y-scroll scroll-hidden relative`}
           id="Chat"
         >
           <ChatInput />
