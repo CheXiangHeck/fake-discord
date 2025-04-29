@@ -1,5 +1,5 @@
 import { ChannelButton } from "@/components/custom/channelButton";
-import { CreateServer } from "@/components/features/channel/createServerBox";
+import { CreateChannel } from "@/components/features/channel/createChannelBox";
 import { LoadingPage } from "@/components/features/loadingPage/LoadingPage";
 import { UserInfoBox } from "@/components/features/userBox/userInfoBox";
 
@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex h-full">
         <div className="p-3 h-full">
           <ChannelButton channelName="Inbox" image="/inbox.png" />
-          <CreateServer />
+          <CreateChannel />
         </div>
         {children}
         <UserInfoBox />
