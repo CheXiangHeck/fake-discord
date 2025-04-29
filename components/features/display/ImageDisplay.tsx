@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 interface ImageDisplayProps {
   file: File;
-  className: string;
+  className?: string;
 }
 
 export const ImageDisplay = ({ file, className }: ImageDisplayProps) => {
