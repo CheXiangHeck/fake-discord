@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="bg-slate-900 h-full">
       <nav className="flex justify-between p-2">
         <div></div>
-        <div>Solana</div>
+        <div>Direct Messages</div>
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"

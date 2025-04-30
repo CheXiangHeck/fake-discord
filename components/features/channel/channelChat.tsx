@@ -41,7 +41,7 @@ export const ChannelChat = ({channelName, className}: ChannelChatProps) => {
   },[])
 
   return (
-    <div className="h-full w-full bg-gray-800">
+    <div className="h-full md:w-full w-1/2 bg-gray-800">
       <p className="p-3 border-b-2 border-gray-700">{channelName}</p>
       <div className="flex h-full w-full">
         <div

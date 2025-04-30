@@ -3,7 +3,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 
 export const UserInfoBox = () => {
   return (
-    <div className="w-2/9 h-[75px] bg-gray-700 flex gap-2 absolute bottom-0 px-3 py-5 items-center justify-between m-3 rounded-xl">
+    <div className="md:w-2/9 w-1/2 h-[75px] bg-gray-700 flex gap-2 absolute bottom-0 px-3 py-5 items-center justify-between m-3 rounded-xl">
       <Sheet>
         <SheetTrigger asChild>
           <div className="flex flex-col gap-1 p-1 w-full hover:bg-gray-400 rounded-xl">

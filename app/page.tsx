@@ -12,7 +12,7 @@ export default function Home() {
   const afterSignIn = async () => {
     if (isLoaded) {
       if (isSignedIn) {
-        router.push(`/@me/channel/welcome`);
+        router.push(`/channel/@me`);
       }
     }
   }
