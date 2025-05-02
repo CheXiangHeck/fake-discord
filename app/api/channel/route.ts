@@ -1,7 +1,5 @@
 "use server"
 import { currentProfile } from "@/components/authentication/current-profile";
-import { uploadBlob } from "@/components/blob/blobFunction";
-import { PutBlobResult } from "@vercel/blob";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -11,8 +9,11 @@ export async function POST(req: Request) {
 
       const name = formData.get("name");
       const file = formData.get("file") as File;
+      const friend = formData.get("friend");
+      const emoji = formData.get("emoji");
+      const event = formData.get("event");
 
-      if (!name || !file)
+      if (!name || !file || !friend || !emoji || !event)
         return new NextResponse("Missing Content", { status: 412 });
 
       const authCheck = await currentProfile();
@@ -22,8 +23,6 @@ export async function POST(req: Request) {
 
       //Insert to database
 
-      //Insert to blob
-      const blobUpdate:PutBlobResult = await uploadBlob(file);
 
       return new NextResponse(`Data sent successful`, { status: 200 })
     }

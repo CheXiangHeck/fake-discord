@@ -4,10 +4,21 @@ import "./css/Home.css";
 import { SignedOut, SignInButton, SignUpButton, useAuth } from "@clerk/nextjs";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function Home() {
   const { isLoaded, isSignedIn, userId, sessionId } = useAuth();
   const router = useRouter();
+
+  const createUser = async () => {
+    if (userId) {
+      const response = await axios.post("/api/user", {
+        userId: userId,
+      });
+
+      afterSignIn();
+    }
+  }
 
   const afterSignIn = async () => {
     if (isLoaded) {
@@ -18,7 +29,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    afterSignIn();
+    createUser();
   }, [isLoaded, isSignedIn, userId, router, sessionId]);
 
   return (

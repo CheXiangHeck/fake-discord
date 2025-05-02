@@ -5,12 +5,16 @@ import { PlusIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { CreateServerSettings } from "./createServerSettings";
 
 export const CreateChannel = () => {
 
     const [file, setFile] = useState<File>();
     const [serverName, setServerName] = useState("");
     const [tempDisplay, setTempDisplay] = useState<string | null>(null);
+    const [friendOnly, setFriendOnly] = useState(false);
+    const [customEmoji, setCustomEmoji] = useState(true);
+    const [event, setEvent] = useState(true);
     const router = useRouter();
 
     const checkFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,10 +53,13 @@ export const CreateChannel = () => {
 
             formData.append("file", file);
             formData.append("name", serverName);
+            formData.append("friend", JSON.stringify(friendOnly));
+            formData.append("emoji", JSON.stringify(customEmoji));
+            formData.append("event", JSON.stringify(event));
 
             const res =  await axios.post("../api/channel", formData);
 
-            console.log(res.data);
+            console.log(res);
 
             removeFile();
             setServerName("");
@@ -120,6 +127,13 @@ export const CreateChannel = () => {
                         </label>
                     </div>
                     <input type="text" placeholder="Your server name..." className="text-black m-2 p-2 border-gray-600 border-2" onChange={(e) => setServerName(e.target.value)} />
+                    <CreateServerSettings                        friendOnly={friendOnly}
+                        setFriendOnly={setFriendOnly}
+                        customEmoji={customEmoji}
+                        setCustomEmoji={setCustomEmoji}
+                        event={event}
+                        setEvent={setEvent}
+                    />
                     <DialogFooter>
                         <Button type="submit">
                             Create
