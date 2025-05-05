@@ -1,7 +1,8 @@
-"use server"
 import { currentProfile } from "@/components/authentication/current-profile";
 import { ServerCreator } from "@/components/features/non_ui/server/serverCreator";
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
 
 export async function POST(req: Request) {
   try {

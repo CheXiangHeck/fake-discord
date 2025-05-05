@@ -1,8 +1,9 @@
-"use server";
 import { SupabaseAdminDatabase } from "@/components/database/databaseAdminClass";
 import { SupabaseDatabase } from "@/components/database/databaseClass";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+
+export const runtime = 'edge';
 
 export async function POST(req: Request) {
 
