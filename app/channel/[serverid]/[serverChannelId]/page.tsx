@@ -3,9 +3,11 @@ import { ChannelChat } from "@/components/features/channel/channelChat";
 import { Frame } from "@/components/features/channel/channelFrame";
 import { ServerFrame } from "@/components/features/channel/serverFrame";
 
-export default function Page() {
-  const runtime = process.env.NEXT_PUBLIC_RUNTIME;
+export const config = {
+  runtime: process.env.NEXT_PUBLIC_RUNTIME,
+};
 
+export default function Page() {
   return (
     <>
       <Frame>

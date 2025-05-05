@@ -4,8 +4,11 @@ import { SupabaseDatabase } from "@/components/database/databaseClass";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+export const config = {
+  runtime: process.env.NEXT_PUBLIC_RUNTIME,
+};
+
 export async function POST(req: Request) {
-  const runtime = process.env.NEXT_PUBLIC_RUNTIME;
 
   try {
     if (req.method === "POST") {
