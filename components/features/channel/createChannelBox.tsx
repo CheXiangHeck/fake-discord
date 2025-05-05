@@ -59,7 +59,9 @@ export const CreateChannel = () => {
 
             const res =  await axios.post("../api/channel", formData);
 
-            console.log(res);
+            if (res.data === "successful") {
+
+            }
 
             removeFile();
             setServerName("");
@@ -135,7 +137,7 @@ export const CreateChannel = () => {
                         setEvent={setEvent}
                     />
                     <DialogFooter>
-                        <Button type="submit">
+                        <Button type="submit" className="cursor-pointer">
                             Create
                         </Button>
                     </DialogFooter>

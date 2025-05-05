@@ -10,7 +10,7 @@ export class SupabaseAdminDatabase implements SupabaseDatabaseBasic {
         throw new Error("Method not implemented.");
     }
 
-    public async insertData(table: string, data: Record<string, string>): Promise<string> {
+    public async insertData(table: string, data: Record<string, any>): Promise<string> {
         const supabase = createAdminClient();
 
         const { error } = await supabase.from(table).insert(data);

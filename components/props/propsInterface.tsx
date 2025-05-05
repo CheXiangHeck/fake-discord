@@ -31,3 +31,26 @@ export enum ElementType {
   Chat = "chat",
   Post = "post",
 }
+
+export interface RoleInfo {
+  name: string;
+  role: {
+    tier: number;
+    demote: boolean;
+    rankup: boolean;
+    remove: boolean;
+    ban: boolean;
+    mute: boolean;
+    invite: boolean;
+    modifyEvent: boolean;
+    modifyChannel: boolean;
+    deleteServer: boolean;
+  }
+}
+
+export interface ChannelInfo {
+  name: string;
+  channel: {
+    
+  }
+}

@@ -1,5 +1,6 @@
 "use server"
 import { currentProfile } from "@/components/authentication/current-profile";
+import { ServerCreator } from "@/components/features/non_ui/server/serverCreator";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -9,11 +10,11 @@ export async function POST(req: Request) {
 
       const name = formData.get("name");
       const file = formData.get("file") as File;
-      const friend = formData.get("friend");
-      const emoji = formData.get("emoji");
-      const event = formData.get("event");
+      const friend = formData.get("friend") === "true";
+      const emoji = formData.get("emoji") === "true";
+      const event = formData.get("event") === "true";
 
-      if (!name || !file || !friend || !emoji || !event)
+      if (!name || !file || friend === null || emoji === null || event === null)
         return new NextResponse("Missing Content", { status: 412 });
 
       const authCheck = await currentProfile();
@@ -22,9 +23,16 @@ export async function POST(req: Request) {
         return new NextResponse("Unauthorized", { status: 401 });
 
       //Insert to database
+      const serverCreator = new ServerCreator(name.toString(), file, {
+        isFriendOnly: friend,
+        customEmoji: emoji,
+        event: event,
+        notification: true,
+      });
 
+      const creationStatus = await serverCreator.activate();
 
-      return new NextResponse(`Data sent successful`, { status: 200 })
+      return new NextResponse(creationStatus , { status: 200 })
     }
 
     return new NextResponse("Invalid Method", { status: 405 });
