@@ -4,7 +4,7 @@ import { Frame } from "@/components/features/channel/channelFrame";
 import { ServerFrame } from "@/components/features/channel/serverFrame";
 
 export const config = {
-  runtime: process.env.NEXT_PUBLIC_RUNTIME,
+  runtime: 'edge',
 };
 
 export default function Page() {
