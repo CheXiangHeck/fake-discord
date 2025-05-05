@@ -3,9 +3,9 @@ import { currentProfile } from "@/components/authentication/current-profile";
 import { ServerCreator } from "@/components/features/non_ui/server/serverCreator";
 import { NextResponse } from "next/server";
 
-export const runtime = 'edge';
-
 export async function POST(req: Request) {
+  const runtime = process.env.NEXT_PUBLIC_RUNTIME;
+
   try {
     if (req.method === "POST") {
       const formData = await req.formData();

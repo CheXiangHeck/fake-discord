@@ -4,9 +4,9 @@ import { SupabaseDatabase } from "@/components/database/databaseClass";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export const runtime = 'edge';
-
 export async function POST(req: Request) {
+  const runtime = process.env.NEXT_PUBLIC_RUNTIME;
+
   try {
     if (req.method === "POST") {
       const user = await currentUser();

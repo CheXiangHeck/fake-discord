@@ -48,6 +48,10 @@ const nextConfig: NextConfig = {
         ]
       }
     ]
+  },
+
+  serverRuntimeConfig: {
+    runtime: process.env.NEXT_PUBLIC_RUNTIME
   }
 };
 
