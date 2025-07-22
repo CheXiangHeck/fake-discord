@@ -15,6 +15,9 @@ export const CreateChannel = () => {
     const [friendOnly, setFriendOnly] = useState(false);
     const [customEmoji, setCustomEmoji] = useState(true);
     const [event, setEvent] = useState(true);
+    const [isServerFormOpen, setIsServerFormOpen] = useState(false);
+    const [isChannelFormOpen, setIsChannelFormOpen] = useState(false);
+    const [channelInfo, setChannelInfo] = useState()
     const router = useRouter();
 
     const checkFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +63,7 @@ export const CreateChannel = () => {
             const res =  await axios.post("../api/channel", formData);
 
             if (res.data === "successful") {
-
+                setIsServerFormOpen(false);
             }
 
             removeFile();
@@ -111,38 +114,45 @@ export const CreateChannel = () => {
     }, [tempDisplay])
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <div className="w-12 h-12 flex justify-center items-center rounded-xl bg-gray-600 cursor-pointer">
-                    <PlusIcon />
-                </div>
-            </DialogTrigger>
-            <DialogContent>
-                <DialogHeader className="text-black">
-                    <DialogTitle>Create Your Server</DialogTitle>
-                </DialogHeader>
-                <form className="w-full h-full flex flex-col gap-3 p-2" onSubmit={(e) => handleSubmit(e)}>
-                    <div className="w-full h-10 flex justify-center items-center" id="imageBox">
-                        <label className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer text-2xl" id="fileInput">
-                            +
-                            <input type="file" className="hidden" accept="image/*" onChange={(e) => checkFile(e)} />
-                        </label>
+        <>
+            <Dialog open={isServerFormOpen} onOpenChange={setIsServerFormOpen}>
+                <DialogTrigger asChild>
+                    <div className="w-12 h-12 flex justify-center items-center rounded-xl bg-gray-600 cursor-pointer">
+                        <PlusIcon />
                     </div>
-                    <input type="text" placeholder="Your server name..." className="text-black m-2 p-2 border-gray-600 border-2" onChange={(e) => setServerName(e.target.value)} />
-                    <CreateServerSettings                        friendOnly={friendOnly}
-                        setFriendOnly={setFriendOnly}
-                        customEmoji={customEmoji}
-                        setCustomEmoji={setCustomEmoji}
-                        event={event}
-                        setEvent={setEvent}
-                    />
-                    <DialogFooter>
-                        <Button type="submit" className="cursor-pointer">
-                            Create
-                        </Button>
-                    </DialogFooter>
-                </form>
-            </DialogContent>
-        </Dialog>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader className="text-black">
+                        <DialogTitle>Create Your Server</DialogTitle>
+                    </DialogHeader>
+                    <form className="w-full h-full flex flex-col gap-3 p-2" onSubmit={(e) => handleSubmit(e)}>
+                        <div className="w-full h-10 flex justify-center items-center" id="imageBox">
+                            <label className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer text-2xl" id="fileInput">
+                                +
+                                <input type="file" className="hidden" accept="image/*" onChange={(e) => checkFile(e)} />
+                            </label>
+                        </div>
+                        <input type="text" placeholder="Your server name..." className="text-black m-2 p-2 border-gray-600 border-2" onChange={(e) => setServerName(e.target.value)} />
+                        <CreateServerSettings                        friendOnly={friendOnly}
+                            setFriendOnly={setFriendOnly}
+                            customEmoji={customEmoji}
+                            setCustomEmoji={setCustomEmoji}
+                            event={event}
+                            setEvent={setEvent}
+                        />
+                        <DialogFooter>
+                            <Button type="submit" className="cursor-pointer">
+                                Create
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+            <Dialog open={isChannelFormOpen} onOpenChange={setIsChannelFormOpen}>
+                <DialogContent>
+                    
+                </DialogContent>
+            </Dialog>
+        </>
     );
 }

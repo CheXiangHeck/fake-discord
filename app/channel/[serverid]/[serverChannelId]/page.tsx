@@ -3,8 +3,6 @@ import { ChannelChat } from "@/components/features/channel/channelChat";
 import { Frame } from "@/components/features/channel/channelFrame";
 import { ServerFrame } from "@/components/features/channel/serverFrame";
 
-export const runtime = 'edge';
-
 export default function Page() {
   return (
     <>

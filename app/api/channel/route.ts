@@ -1,5 +1,6 @@
 import { currentProfile } from "@/components/authentication/current-profile";
 import { ServerCreator } from "@/components/features/non_ui/server/serverCreator";
+import { del } from "@vercel/blob";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -31,7 +32,15 @@ export async function POST(req: Request) {
 
       const creationStatus = await serverCreator.activate();
 
-      return new NextResponse(creationStatus , { status: 200 })
+      if (creationStatus !== "successful") {
+        if (serverCreator.getBlobURL() !== "blob not created") {
+          await del(serverCreator.getBlobURL());
+        }
+
+        return new NextResponse("Error Occured on Creating server info", {status: 500})
+      }
+
+      return new NextResponse("Successful" , { status: 200 })
     }
 
     return new NextResponse("Invalid Method", { status: 405 });

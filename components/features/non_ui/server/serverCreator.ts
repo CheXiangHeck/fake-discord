@@ -24,6 +24,7 @@ export class ServerCreator implements CreationAbstract {
   private picture: File;
   private setting: ServerSetting;
   private serverId: string | undefined;
+  private blobURL: string | undefined;
 
   constructor(name: string, picture: File, setting: ServerSetting) {
     this.database = new SupabaseDatabase();
@@ -40,7 +41,10 @@ export class ServerCreator implements CreationAbstract {
 
   //Activation of create server process.
   public async createServer(name: string, picture: File, setting: ServerSetting) {
-    return this.insertIntoDatabase(name, await this.uploadImage(picture), setting, this.generateServerNum(16));
+    const blobURL = await this.uploadImage(picture);
+    this.blobURL = blobURL;
+
+    return this.insertIntoDatabase(name, blobURL, setting, this.generateServerNum(16));
   }
 
   //Upload image to nextjs blob
@@ -83,6 +87,10 @@ export class ServerCreator implements CreationAbstract {
     }
 
     return setting;
+  }
+
+  public getBlobURL(): string {
+    return this.blobURL ?? "blob not created";
   }
 
   //method made for generate server's code for the system.
